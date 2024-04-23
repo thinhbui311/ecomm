@@ -11,9 +11,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="mx-auto flex flex-col h-screen justify-between relative">
     <%= render "shared/navbar" %>
-    <main class="container mx-auto mt-28 max-w-7xl px-2 sm:px-6 lg:px-8">
+    <main class="container mx-auto mt-28 max-w-7xl px-2 sm:px-6 lg:px-8 grow">
       <%= yield %>
     </main>
     <%= render "shared/footer" %>
