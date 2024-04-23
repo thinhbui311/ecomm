@@ -6,14 +6,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <%= javascript_importmap_tags %>
   </head>
 
   <body class="mx-auto flex flex-col h-screen justify-between relative">
     <%= render "shared/navbar" %>
-    <main class="container mx-auto mt-28 max-w-7xl px-2 sm:px-6 lg:px-8 grow">
+    <main class="container mx-auto mt-28 max-w-7xl px-2 sm:px-6 lg:px-8 grow relative">
+      <div class="hidden sm:flex flex-col-reverse z-50 absolute top-50 right-50">
+        <%= flash_messages %>
+      </div>
       <%= yield %>
     </main>
     <%= render "shared/footer" %>

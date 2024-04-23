@@ -31,7 +31,7 @@ class Admin::ProductsController < AdminController
         format.html { redirect_to admin_product_url(@admin_product), notice: "Product was successfully created." }
         format.json { render :show, status: :created, location: @admin_product }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, alert: "Somethings went wrong" }
         format.json { render json: @admin_product.errors, status: :unprocessable_entity }
       end
     end

@@ -1,4 +1,3 @@
-<h1>Product show page</h1>
 <div class="flex justify-center gap-20 py-10">
   <div class="flex flex-wrap max-w-lg">
     <% @product.images.each do |image| %>
@@ -17,7 +16,7 @@
           <button data-action="click->products#selectSize" value="<%= stock.size %>" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
             <%= stock.size %>
           </button>
-        <% else %> 
+        <% else %>
           <button disabled value="<%= stock.size %>" class="disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
             <%= stock.size %>
           </button>

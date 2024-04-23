@@ -38,6 +38,8 @@ class CheckoutsController < ApplicationController
     )
 
     render json: { url: session.url }
+  rescue => e
+    render json: {error: e.message}, status: :unprocessable_entity
   end
 
   def success

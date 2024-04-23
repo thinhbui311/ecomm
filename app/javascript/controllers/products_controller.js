@@ -1,4 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
+import ToastNotify from "../utilities/toast_notify.js"
 
 // Connects to data-controller="products"
 export default class extends Controller {
@@ -22,6 +23,7 @@ export default class extends Controller {
         })
       }
       localStorage.setItem("cart", JSON.stringify(cartArray))
+      ToastNotify.successNotify("Added to cart!")
     } else {
       const cartArray = []
       cartArray.push({
@@ -37,7 +39,7 @@ export default class extends Controller {
 
   selectSize(e) {
     this.sizeValue = e.target.value
-    const selectedSizeEl = document.getElementById("selected-size") 
+    const selectedSizeEl = document.getElementById("selected-size")
     selectedSizeEl.innerText = `Selected Size: ${this.sizeValue}`
   }
 }

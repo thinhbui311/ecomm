@@ -1,10 +1,9 @@
 import { Controller } from "@hotwired/stimulus"
+import ToastNotify from "../utilities/toast_notify.js"
 
 // Connects to data-controller="cart"
 export default class extends Controller {
   initialize() {
-
-    console.log("cart controller initialized")
     const cart = JSON.parse(localStorage.getItem("cart"))
     if (!cart) {
       return
@@ -69,18 +68,14 @@ export default class extends Controller {
     }).then(response => {
         if (response.ok) {
           response.json().then(body => {
-            window.location.href = body.url
+            ToastNotify.successNotify("Payment Success")
+            window.location.href = body.url;
           })
         } else {
           response.json().then(body => {
-            const errorEl = document.createElement("div")
-            errorEl.innerText = `There was an error processing your order. ${body.error}`
-            let errorContainer = document.getElementById("errorContainer")
-            errorContainer.appendChild(errorEl)
+          ToastNotify.failureNotify("Payment Failure")
           })
         }
       })
   }
-
 }
-
