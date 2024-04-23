@@ -1,0 +1,34 @@
+<h1>Category Show Page</h1>
+<div class="min-h-screen flex gap-10">
+  <div class="flex flex-wrap flex-col mt-6">
+    <h2 class="text-lg text-gray-800">Filter</h2>
+    <%= form_with url: category_path(@category), method: :get, class: "flex flex-col"  do |form| %>
+      <%= form.number_field :min, placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
+      <%= form.number_field :max, placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
+      <%= form.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
+    <% end %>
+    <%= form_with url: category_path(@category), method: :get, class: "flex flex-col" do |form| %>
+      <%= form.submit "Clear", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
+    <% end %>
+  </div>
+    <% if @products.empty? %>
+      <p class="text-2xl text-left text-gray-800">No products found</p>
+    <% else %>
+      <div class="grid grid-cols-4 gap-4">
+        <% @products.each do |product| %>
+          <%= link_to product_path(product), class: "block w-full overflow-hidden" do %>
+            <div class="max-w-xs flex flex-col p-4 justify-center items-center">
+              <% if product.images.first.present? %>
+                <%= image_tag(product.images.first.variant(:medium), class: "rounded h-52 object-cover w-full") %>
+              <% else %>
+                <%= image_tag("http://via.placeholder.com/250", class: "rounded h-52 object-cover w-full") %>
+              <% end %>
+              <p class="mt-6 font-medium text-lg text-gray-800"><%= product.name %></p>
+              <p class="mt-2font-medium text-gray-800 text-red-500 font-medium"><%= number_with_delimiter(product.price) %>đ</p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
